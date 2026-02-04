@@ -27,8 +27,12 @@
                             <field name="description" />
 
                         </page>
-                        <page string="Status">
-                            <field name="state"/>
+                        <page string="Other Infos">
+                            <p>Sales Person</p>
+                            <field name="salesperson"/>
+                            <separator/>
+                            <p>Buyer</p>
+                            <field name="buyer"/>
                         </page>
                     </notebook>
                 </sheet>
