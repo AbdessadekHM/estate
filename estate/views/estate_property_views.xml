@@ -12,10 +12,21 @@
                     <group>
 
                         <group>
-                            <field name="name"/>
+                            <!-- <div class="oe_title"> -->
+
+                                <field name="name"/>
+                            <!-- </div> -->
 
 
                         </group>
+                        <separator/>
+                        <group>
+                            <field name="tag_ids" widget="many2many_tags"/>
+
+
+                        </group>
+                        <separator/>
+
 
                         <group>
                             <field name="active"/>
@@ -24,15 +35,22 @@
 
                     <notebook>
                         <page string="Description">
-                            <field name="description" />
+                            <group>
+
+                                <field name="description" />
+                            </group>
+                        
 
                         </page>
                         <page string="Other Infos">
-                            <p>Sales Person</p>
-                            <field name="salesperson"/>
-                            <separator/>
-                            <p>Buyer</p>
-                            <field name="buyer"/>
+                            <group>
+
+                                <field name="salesperson"/>
+                            </group>
+                            <group>
+                                <field name="buyer"/>
+                            </group>
+                    
                         </page>
                     </notebook>
                 </sheet>
