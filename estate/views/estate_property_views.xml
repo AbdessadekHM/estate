@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<odoo>
+
+
+
+    <record id="estate_form" model="ir.ui.view">
+        <field name="name">Form</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml" >
+            <form string="Properties">
+                <sheet>
+                    <group>
+
+                        <group>
+                            <field name="name"/>
+
+
+                        </group>
+
+                        <group>
+                            <field name="active"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Description">
+                            <field name="description" />
+
+                        </page>
+                        <page string="Status">
+                            <field name="state"/>
+                        </page>
+                    </notebook>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+
+    <record id="estate_list1" model="ir.ui.view">
+        <field name="name">List</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <list string="Properties">
+                <field name="name"/>
+                <field name="active"/>
+                <field name="description"/>
+
+
+            </list>
+
+        </field>
+
+    </record>
+
+
+
+    <record id="estate_list" model="ir.ui.view">
+        <field name="name">List</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <list string="Properties">
+                <field name="name"/>
+                <field name="active"/>
+                <field name="description"/>
+                <field name="state"/>
+
+
+            </list>
+
+        </field>
+
+    </record>
+
+    <record id="estate_search" model="ir.ui.view">
+        <field name="name">Search Properties</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <search string="Properties">
+                <field name="name" />
+                <field name="description" />
+                <field name="state" invisible="1" />
+                <separator />
+
+                <filter string="test inactive" name="inactive" domain="[('active','=','False')]"  />
+                <group>
+                    
+                    <filter name="group_by" context="{'group_by': 'state'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- <record id="estate_action" model="ir.actions.act_window">
+        <field name="name">Properties</field>
+        <field name="res_model">estate.property</field>
+        <field name="view_mode">list,form,search</field>
+
+    </record> -->
+
+    <record id="estate_action" model="ir.actions.act_window">
+        <field name="name">Properties</field>
+        <field name="res_model">estate.property</field>
+        <field name="view_mode">list,form,search</field>
+        <!-- <field name="views">
+        </field> -->
+        <field name="view_id" ref="estate_list" />
+
+    </record>
+
+
+
+
+</odoo>
