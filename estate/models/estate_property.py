@@ -58,6 +58,18 @@ class Property(models.Model):
 
         pass
 
+    @api.onchange("garden")
+    def _onchange_garden(self):
+        if self.garden:
+            self.garden_area=10
+            self.garden_orientation="north"
+        else:
+            
+            self.garden_area=0
+            self.garden_orientation=False
+
+        pass
+
 
     # def action_do_something(self):
     #     print("do something")
