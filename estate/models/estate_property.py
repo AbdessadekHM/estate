@@ -7,7 +7,7 @@ class Property(models.Model):
     name=fields.Char(required=True)
     description=fields.Text()
     postcode=fields.Char()
-    date_availability=fields.Date(copy=False, default=fields.Datetime.add(fields.Datetime.today(),months=3))
+    date_availability=fields.Date(copy=False, default=fields.Datetime.add(fields.Datetime.today(),months=3), string="Available From")
     expected_price=fields.Float(required=True)
     selling_price=fields.Float(readonly=True,copy=False)
     bedrooms=fields.Integer(default=2)
