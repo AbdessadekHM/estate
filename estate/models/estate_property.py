@@ -50,6 +50,10 @@ class Property(models.Model):
     def _calculate_best_price(self):
 
         for record in self:
+            if len(record.mapped("offer_ids.price")) == 0:
+                record.best_price = 0
+                continue
+
             record.best_price = max(record.mapped("offer_ids.price"))
 
         pass
