@@ -8,24 +8,65 @@
         <field name="model">estate.property</field>
         <field name="arch" type="xml" >
             <form string="Properties">
+                <!-- <header>
+                    <button action="action_do_someting" type="object" string="Do Something"/>
+                </header> -->
                 <sheet>
                     <group>
 
                         <group>
-                            <!-- <div class="oe_title"> -->
 
-                                <field name="name"/>
-                            <!-- </div> -->
+                                <!-- <field name="name"/> -->
+                            <div class="oe_title" >
+                                <!-- <label for="name" string="Property"/> -->
+                                <h1>
+
+                                    <field name="name" placeholder="Property Title"/>
+
+                                </h1>
+
+                            </div>
 
 
                         </group>
                         <separator/>
                         <group>
+
                             <field name="tag_ids" widget="many2many_tags"/>
 
 
                         </group>
-                        <separator/>
+
+                        <group>
+                            <field name="description" />
+
+
+                        </group>
+
+                        <group>
+                            <field name="postcode" />
+
+
+                        </group>
+
+                        <group>
+                            <field name="date_availability" />
+
+
+                        </group>
+
+                        <group>
+                            <field name="expected_price" />
+
+
+                        </group>
+
+                        <group>
+                            <field name="selling_price" />
+
+
+                        </group>
+
 
 
                         <group>
@@ -52,6 +93,15 @@
                             </group>
                     
                         </page>
+
+
+                        <page string="Offers">
+                            <group>
+                                 <field name="offer_ids" />
+
+                            </group>
+                        </page>
+
                     </notebook>
                 </sheet>
 
