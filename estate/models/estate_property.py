@@ -1,8 +1,22 @@
 from odoo import models, fields, api
+from odoo.exceptions import UserError #type:ignore
 
 class Property(models.Model):
     _name = "estate.property"
     _description="easy peasy module"
+
+
+    _check_price = models.Constraint(
+        'CHECK(expected_price>0)',
+        'The expected price should be positive'
+    )
+
+    _check_selling_price = models.Constraint(
+        'CHECK(selling_price>0)',
+        'The selling price should be positive'
+    )
+    
+
 
     name=fields.Char(required=True)
     description=fields.Text()
@@ -22,7 +36,7 @@ class Property(models.Model):
         ('east', 'East'),
         ('south', 'South')
     ], default='north',string="Garden Orientation")
-    active=fields.Boolean()
+    active=fields.Boolean(default=True)
     state=fields.Selection([
         ('new', 'New'),
         ('offer_received', 'Offer Received'),
@@ -36,7 +50,7 @@ class Property(models.Model):
     salesperson=fields.Many2one("res.users", string="SalesPerson", default=lambda self: self.env.user )
     buyer=fields.Many2one("res.partner", copy=False)
     tag_ids=fields.Many2many("estate.property.tag")
-    offer_ids=fields.One2many("estate.property.offer", "partner_id", string="Offers")
+    offer_ids=fields.One2many("estate.property.offer", "property_id", string="Offers")
     total_area=fields.Integer(compute="_calculate_total_area", string="Total Area")
     best_price=fields.Float(compute="_calculate_best_price", string="Best Price")
 
@@ -50,7 +64,7 @@ class Property(models.Model):
     def _calculate_best_price(self):
 
         for record in self:
-            if len(record.mapped("offer_ids.price")) == 0:
+            if len(record.mapped("offer_ids")) == 0:
                 record.best_price = 0
                 continue
 
@@ -71,12 +85,25 @@ class Property(models.Model):
         pass
 
 
-    # def action_do_something(self):
-    #     print("do something")
-    #     print(self)
-    #     for record in self:
-    #         record.test='sold'
-    #     return True
+    def action_do_something(self):
+        print("event triggered!!")
+        return True
+    def sold_action(self):
+        for record in self:
+            if record.state =='cancelled':
+                raise UserError("You can't sold a cancelled property") 
+            else:
+                record.state='sold'
+
+        pass
+    def cancel_action(self):
+
+        for record in self:
+            if record.state =='sold':
+                raise UserError("You can't cancel a sold property") 
+            else:
+                record.state='cancelled'
+        pass
 
 
     

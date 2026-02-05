@@ -4,5 +4,10 @@ class Tag(models.Model):
     _name="estate.property.tag"
     _description="tag description"
 
+    _check_name=models.Constraint(
+        'unique (name)',
+        'Name should be unique'
+    )
+
     name=fields.Char(required=True)
     

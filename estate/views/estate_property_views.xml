@@ -7,10 +7,12 @@
         <field name="name">Form</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml" >
+
             <form string="Properties">
-                <!-- <header>
-                    <button action="action_do_someting" type="object" string="Do Something"/>
-                </header> -->
+                <header>
+                    <button name="sold_action" type="object" string="Sold" class="oe_highlight"/>
+                    <button name="cancel_action" type="object" string="Cancel" class="button_box"/>
+                </header>
                 <sheet>
                     <group>
 
@@ -71,6 +73,13 @@
                             <field name="best_price" />
 
 
+
+                        </group>
+
+                        <group>
+                            <field name="active" invisible="1" />
+
+
                         </group>
 
 
@@ -125,6 +134,11 @@
                                 <field name="total_area" />
                             </group>
 
+                            <group>
+
+                                <field name="state" />
+                            </group>
+
 
                             
                         
@@ -143,10 +157,7 @@
 
 
                         <page string="Offers">
-                            <group>
-                                 <field name="offer_ids" />
-
-                            </group>
+                            <field name="offer_ids" />
                         </page>
 
                     </notebook>

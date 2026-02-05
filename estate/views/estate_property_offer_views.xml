@@ -4,11 +4,14 @@
         <field name="name">Offer list</field>
         <field name="model">estate.property.offer</field>
         <field name="arch" type="xml">
-            <list string="Offers" >
+            <list string="test" >
+                <field name="partner_id"/>
                 <field name="price"/>
                 <field name="status"/>
-                <field name="partner_id"/>
+                
                 <field name="property_id"/>
+                <button name="action_confirm" type="object" icon="fa-check" title="confirm"/>
+                <button name="action_cancel" type="object" icon="fa-times" title="cancel"/>
 
             </list>
         </field>
@@ -39,13 +42,13 @@
                         <field name="property_id"/>
                     </group>
 
-                    <group>
+                    <!-- <group>
                         <field name="validity"/>
                     </group>
 
                     <group>
                         <field name="date_deadline"/>
-                    </group>
+                    </group> -->
                 </sheet>
             </form>
         </field>
