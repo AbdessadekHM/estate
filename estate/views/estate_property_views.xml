@@ -176,7 +176,8 @@
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
             <list string="Properties">
-                <field name="name"/>
+                <field name="name" string="Title"/>
+                <field name="property_type_id" string="Property"/>
                 <field name="active"/>
                 <field name="description"/>
 
@@ -195,9 +196,14 @@
         <field name="arch" type="xml">
             <list string="Properties">
                 <field name="name"/>
-                <field name="active"/>
-                <field name="description"/>
-                <field name="state"/>
+                <field name="property_type_id" string="Property Type"/>
+                <field name="postcode"/>
+                <field name="tag_ids" widget="many2many_tags"/>
+                <field name="bedrooms"/>
+                <field name="living_area"/>
+                <field name="expected_price"/>
+                <field name="selling_price"/>
+                <field name="date_availability" optional="1"/>
 
 
             </list>
