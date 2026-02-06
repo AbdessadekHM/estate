@@ -1,20 +1,21 @@
 from odoo import models, fields, api
-from odoo.exceptions import UserError #type:ignore
+from odoo.exceptions import UserError, ValidationError #type:ignore
+from odoo.tools.float_utils import float_compare, float_is_zero #type:ignore
 
 class Property(models.Model):
     _name = "estate.property"
     _description="easy peasy module"
 
 
-    _check_price = models.Constraint(
-        'CHECK(expected_price>0)',
-        'The expected price should be positive'
-    )
+    # _check_price = models.Constraint(
+    #     'CHECK(expected_price>0)',
+    #     'The expected price should be positive'
+    # )
 
-    _check_selling_price = models.Constraint(
-        'CHECK(selling_price>0)',
-        'The selling price should be positive'
-    )
+    # _check_selling_price = models.Constraint(
+    #     'CHECK(selling_price>0) ',
+    #     'The selling price should be positive'
+    # )
     
 
 
@@ -104,6 +105,39 @@ class Property(models.Model):
             else:
                 record.state='cancelled'
         pass
+
+
+    
+    @api.constrains("selling_price")
+    def _check_selling_price(self):
+
+        for record in self:
+
+            # # if record.selling_price < (0.9 * record.expected_price):
+
+
+            price_precision = self.env['decimal.precision'].precision_get('Product Price')
+            if float_compare(record.selling_price, 0.9*record.expected_price, precision_digits=price_precision) == -1  :
+                raise ValidationError(f"The selling price can't be less than 90%  of ") 
+            
+            pass
+
+        pass
+
+    @api.constrains("offer_ids", "selling_price")
+    def _check_offer_status(self):
+
+        for record in self:
+            status = set(record.offer_ids.mapped("status"))
+            if 'accepted' not in status and record.selling_price!=0:
+                raise ValidationError("Selling price won't be updated until an offer is accepted")
+                
+                pass
+
+
+
+        pass
+
 
 
     
