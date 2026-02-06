@@ -23,8 +23,22 @@
 
                                 <field name="name"/>
                             </h1>
+
                         </div>
                     </group>
+
+                    <notebook>
+                        <page>
+                            <field name="property_ids">
+                                <list>
+
+                                    <field name="name"/>
+                                    <field name="date_availability" />
+                                    <field name="expected_price" />
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
 
             </form>
