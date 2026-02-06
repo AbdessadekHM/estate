@@ -4,10 +4,10 @@
         <field name="name">Offer list</field>
         <field name="model">estate.property.offer</field>
         <field name="arch" type="xml">
-            <list string="test" editable="bottom">
+            <list string="test" editable="bottom" decoration-danger="status=='refused'" decoration-success="status=='accepted'">
                 <field name="partner_id"/>
                 <field name="price"/>
-                <field name="status"/>
+                <field name="status" column_invisible="1"/>
                 
                 <field name="property_id"/>
                 <button name="action_confirm" type="object" icon="fa-check" title="confirm" invisible="status=='accepted' or status=='refused'"/>
