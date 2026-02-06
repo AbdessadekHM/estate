@@ -19,10 +19,11 @@ class Offer(models.Model):
 
     price=fields.Float()
     status=fields.Selection([
+        ('new', 'New'),
         ('accepted', 'Accepted'),
         ('refused', 'Refused'),
 
-    ], copy=False)
+    ], copy=False, default='new')
 
     partner_id=fields.Many2one("res.partner", string="Partner ID", required=True)
     property_id=fields.Many2one("estate.property", string="Estate Property", required=True)
@@ -60,14 +61,16 @@ class Offer(models.Model):
         return True
     
     def action_cancel(self):
+        print("i am being called")
         for record in self:
             
             if record.status == 'accepted':
-                raise UserError("can't accept an accepeted offer")
+                raise UserError("can't cancel an accepeted offer")
             # elif record.status=='refused':
             #     raise UserError("Offer already refused")
             else:
-                record.status=='refused'
+                print("i am here")
+                record.status='refused'
         return True
 
     # @api.constrains("status","property_id.selling_price")
