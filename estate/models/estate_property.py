@@ -5,6 +5,7 @@ from odoo.tools.float_utils import float_compare, float_is_zero #type:ignore
 class Property(models.Model):
     _name = "estate.property"
     _description="easy peasy module"
+    _order="id desc"
 
 
     # _check_price = models.Constraint(

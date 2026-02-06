@@ -7,6 +7,7 @@ from odoo.tools.float_utils import float_compare, float_is_zero #type:ignore
 class Offer(models.Model):
     _name="estate.property.offer"
     _description="offer description"
+    _order="price desc"
     _check_price = models.Constraint(
         'CHECK(price>0)',
         'The offer price should be positive'

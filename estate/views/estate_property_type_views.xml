@@ -5,6 +5,7 @@
         <field name="model">estate.property.type</field>
         <field name="arch" type="xml">
             <list string="Property List">
+                <field name="sequence" widget="handle"/>
                 <field name="name" />
             </list>
         </field>
@@ -28,7 +29,7 @@
                     </group>
 
                     <notebook>
-                        <page>
+                        <page string="Properties">
                             <field name="property_ids">
                                 <list>
 
