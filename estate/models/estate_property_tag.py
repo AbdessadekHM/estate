@@ -11,4 +11,5 @@ class Tag(models.Model):
     )
 
     name=fields.Char(required=True)
+    color=fields.Integer(string="Color")
     

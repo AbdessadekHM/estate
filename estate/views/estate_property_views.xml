@@ -36,7 +36,7 @@
                         <!-- <separator/> -->
                         <group>
 
-                            <field name="tag_ids" widget="many2many_tags"/>
+                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
 
 
                         </group>
@@ -194,11 +194,11 @@
         <field name="name">List</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
-            <list string="Properties">
+            <list string="Properties" editable="bottom">
                 <field name="name"/>
                 <field name="property_type_id" string="Property Type"/>
                 <field name="postcode"/>
-                <field name="tag_ids" widget="many2many_tags"/>
+                <field name="tag_ids" widget="many2many_tags" options="{'color_field':'color'}"/>
                 <field name="bedrooms"/>
                 <field name="living_area"/>
                 <field name="expected_price"/>
