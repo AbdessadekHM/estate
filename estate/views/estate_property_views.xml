@@ -124,12 +124,12 @@
 
                             <group>
 
-                                <field name="garden_area" />
+                                <field name="garden_area" invisible="not garden" />
                             </group>
 
                             <group>
 
-                                <field name="garden_orientation" />
+                                <field name="garden_orientation" invisible="not garden" />
                             </group>
 
                             <group>
@@ -160,7 +160,7 @@
 
 
                         <page string="Offers">
-                            <field name="offer_ids" />
+                            <field name="offer_ids" readonly="state=='offer_accepted' or state=='sold' or state=='cancelled'"/>
                         </page>
 
                     </notebook>
