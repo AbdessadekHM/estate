@@ -18,6 +18,9 @@
         <field name="arch" type="xml">
             <form string="Property Form">
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button type="action" name="%(estate.estate_property_offer_action)d" icon="fa-icon" title="Offers" class="oe_stat_button"/>
+                    </div>
                     <group>
                         <div class="oe_title">
                             <h1>
