@@ -4,6 +4,7 @@
     'category': 'Real Estate/Brokerage',
     'data': [
         "security/security.xml",
+        "security/ir.rule.xml",
         "security/ir.model.access.csv",
         "data/ir_actions_data.xml",
         "data/ir_cron_data.xml",

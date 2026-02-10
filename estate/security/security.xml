@@ -14,8 +14,8 @@
 
     </record>
 
-    <record id="estate_group_agent" model="res.groups">
-        <field name="name">Agents</field>
+    <record id="estate_group_users" model="res.groups">
+        <field name="name">Users</field>
         <field name="privilege_id" ref="estate.module_category_real_estate_brokerage_privilege"/>
 
     </record>
@@ -24,8 +24,10 @@
     <record id="estate_group_managers" model="res.groups">
         <field name="name">Managers</field>
         <field name="privilege_id" ref="estate.module_category_real_estate_brokerage_privilege"/>
-        <!-- <field name="implied_ids" eval="[(4,ref('estate_group_user'))]"/> -->
+        <field name="implied_ids" eval="[(4,ref('estate.estate_group_users'))]"/>
 
     </record>
-</odoo>
 
+
+    
+</odoo>
