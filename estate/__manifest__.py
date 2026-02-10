@@ -3,9 +3,10 @@
     'depends':['base'],
     'category': 'Real Estate/Brokerage',
     'data': [
-       "security/security.xml",
-       "security/ir.model.access.csv",
-       "data/ir_actions_server_data.xml",
+        "security/security.xml",
+        "security/ir.model.access.csv",
+        "data/ir_actions_data.xml",
+        "data/ir_cron_data.xml",
         "views/estate_property_offer_views.xml",
         "views/estate_property_views.xml",
         "views/estate_property_type_views.xml",

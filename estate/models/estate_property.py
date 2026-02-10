@@ -1,6 +1,7 @@
 from odoo import models, fields, api
 from odoo.exceptions import UserError, ValidationError #type:ignore
 from odoo.tools.float_utils import float_compare, float_is_zero #type:ignore
+import logging 
 
 class Property(models.Model):
     _name = "estate.property"
@@ -105,6 +106,28 @@ class Property(models.Model):
                 raise UserError("You can't cancel a sold property") 
             else:
                 record.state='cancelled'
+        pass
+
+    def _cron_cancel_action(self):
+
+        _logging = logging.getLogger(__name__)
+
+        _logging.info(msg="Cron job is being called")
+
+
+        
+
+        domain = [('state','!=','cancelled')]
+        records = self.search(domain)
+        # self.env
+
+
+
+        for record in records: 
+
+            record.state='cancelled'
+
+
         pass
 
 
