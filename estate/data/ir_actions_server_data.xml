@@ -1,0 +1,25 @@
+<odoo>
+    <record id="estate_property_status_action" model="ir.actions.server">
+        <field name="name">estate.property.status.action</field>
+        <field name="model_id" ref="estate.model_estate_property"/>
+        <field name="state">code</field>
+        <!-- <field name="code">log("Processing code block", level='info')</field> -->
+        <field name="code">
+today=datetime.date.today()
+create_date=record.create_date
+if today == create_date:
+    record.write({
+        'state': 'new'
+
+    })
+else:
+    record.write({
+        'state': 'offer_accepted'
+    })
+        </field>
+    </record>
+    
+</odoo>
+
+
+            
