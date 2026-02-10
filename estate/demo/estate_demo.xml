@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Property Types -->
+        <record id="type_house" model="estate.property.type">
+            <field name="name">House</field>
+            <field name="sequence">1</field>
+        </record>
+        <record id="type_apartment" model="estate.property.type">
+            <field name="name">Apartment</field>
+            <field name="sequence">2</field>
+        </record>
+        <record id="type_villa" model="estate.property.type">
+            <field name="name">Villa</field>
+            <field name="sequence">3</field>
+        </record>
+        <record id="type_office" model="estate.property.type">
+            <field name="name">Office</field>
+            <field name="sequence">4</field>
+        </record>
+        <record id="type_parking" model="estate.property.type">
+            <field name="name">Parking</field>
+            <field name="sequence">5</field>
+        </record>
+        <record id="type_land" model="estate.property.type">
+            <field name="name">Land</field>
+            <field name="sequence">6</field>
+        </record>
+
+        <!-- Property Tags -->
+        <record id="tag_renovated" model="estate.property.tag">
+            <field name="name">Renovated</field>
+            <field name="color">1</field>
+        </record>
+        <record id="tag_cozy" model="estate.property.tag">
+            <field name="name">Cozy</field>
+            <field name="color">2</field>
+        </record>
+         <record id="tag_luxury" model="estate.property.tag">
+            <field name="name">Luxury</field>
+            <field name="color">3</field>
+        </record>
+         <record id="tag_new" model="estate.property.tag">
+            <field name="name">New</field>
+            <field name="color">4</field>
+        </record>
+        <record id="tag_historic" model="estate.property.tag">
+            <field name="name">Historic</field>
+            <field name="color">5</field>
+        </record>
+        <record id="tag_downtown" model="estate.property.tag">
+            <field name="name">Downtown</field>
+            <field name="color">6</field>
+        </record>
+        <record id="tag_beachfront" model="estate.property.tag">
+            <field name="name">Beachfront</field>
+            <field name="color">7</field>
+        </record>
+         <record id="tag_mountain" model="estate.property.tag">
+            <field name="name">Mountain View</field>
+            <field name="color">8</field>
+        </record>
+
+        <!-- Partners (Buyers/Investors) -->
+        <record id="res_partner_investor_1" model="res.partner">
+            <field name="name">Global Real Estate Corp.</field>
+            <field name="email">investor1@example.com</field>
+        </record>
+        <record id="res_partner_investor_2" model="res.partner">
+            <field name="name">Prestige Holdings Ltd.</field>
+             <field name="email">investor2@example.com</field>
+        </record>
+        <record id="res_partner_buyer_1" model="res.partner">
+            <field name="name">John &amp; Jane Doe</field>
+            <field name="email">buyer1@example.com</field>
+        </record>
+        <record id="res_partner_buyer_2" model="res.partner">
+            <field name="name">Alice Smith</field>
+             <field name="email">buyer2@example.com</field>
+        </record>
+        <record id="res_partner_buyer_3" model="res.partner">
+            <field name="name">Bob Johnson</field>
+             <field name="email">buyer3@example.com</field>
+        </record>
+
+        <!-- Properties -->
+
+        <!-- Property 1: House - New -->
+        <record id="property_house_suburbs" model="estate.property">
+            <field name="name">Family Home in Serene Suburbs</field>
+            <field name="description">Spacious family home located in a quiet cul-de-sac. Features a large backyard perfect for kids, a modern kitchen, and a cozy fireplace.</field>
+            <field name="postcode">12345</field>
+            <field name="expected_price">350000.0</field>
+            <field name="bedrooms">4</field>
+            <field name="living_area">180</field>
+            <field name="facades">4</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">600</field>
+            <field name="garden_orientation">south</field>
+            <field name="state">new</field>
+            <field name="property_type_id" ref="type_house"/>
+            <field name="tag_ids" eval="[(6, 0, [ref('tag_cozy'), ref('tag_new')])]"/>
+        </record>
+
+        <!-- Property 2: Apartment - Offer Received -->
+        <record id="property_apartment_downtown" model="estate.property">
+            <field name="name">Modern Downtown Loft</field>
+            <field name="description">Chic loft apartment in the heart of the city. Walking distance to all major offices and nightlife. Exposed brick walls and high ceilings.</field>
+            <field name="postcode">54321</field>
+            <field name="expected_price">220000.0</field>
+            <field name="bedrooms">1</field>
+            <field name="living_area">95</field>
+            <field name="facades">2</field>
+            <field name="garage">False</field>
+            <field name="garden">False</field>
+            <field name="state">offer_received</field>
+            <field name="property_type_id" ref="type_apartment"/>
+            <field name="tag_ids" eval="[(6, 0, [ref('tag_downtown'), ref('tag_renovated')])]"/>
+            <field name="offer_ids" eval="[
+                (0, 0, {'price': 200000.0, 'partner_id': ref('res_partner_buyer_2'), 'status': 'refused'}),
+                (0, 0, {'price': 215000.0, 'partner_id': ref('res_partner_investor_1'), 'status': 'new'})
+            ]"/>
+        </record>
+        
+        <!-- Property 3: Villa - Create (Offer Accepted) -->
+        <record id="property_villa_coastal" model="estate.property">
+            <field name="name">Stunning Coastal Villa</field>
+            <field name="description">Breathtaking ocean views from every room. Private beach access, infinity pool, and guest house.</field>
+            <field name="postcode">98765</field>
+            <field name="expected_price">1200000.0</field>
+            <field name="bedrooms">6</field>
+            <field name="living_area">550</field>
+            <field name="facades">4</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">2500</field>
+            <field name="garden_orientation">west</field>
+            <field name="state">offer_accepted</field>
+            <field name="property_type_id" ref="type_villa"/>
+            <field name="tag_ids" eval="[(6, 0, [ref('tag_luxury'), ref('tag_beachfront')])]"/>
+            <field name="selling_price">1150000.0</field>
+             <field name="offer_ids" eval="[
+                (0, 0, {'price': 1100000.0, 'partner_id': ref('res_partner_investor_2'), 'status': 'refused'}),
+                (0, 0, {'price': 1150000.0, 'partner_id': ref('res_partner_buyer_1'), 'status': 'accepted'})
+            ]"/>
+        </record>
+
+        <!-- Property 4: Historic Townhouse - New -->
+        <record id="property_townhouse_historic" model="estate.property">
+            <field name="name">Historic Townhouse on Main St</field>
+            <field name="description">Beautifully preserved 19th-century townhouse. Original hardwood floors, crown molding, and stained glass windows.</field>
+            <field name="postcode">11223</field>
+            <field name="expected_price">450000.0</field>
+            <field name="bedrooms">3</field>
+            <field name="living_area">220</field>
+            <field name="facades">2</field>
+            <field name="garage">False</field>
+            <field name="garden">True</field>
+            <field name="garden_area">50</field>
+            <field name="garden_orientation">east</field>
+            <field name="state">new</field>
+            <field name="property_type_id" ref="type_house"/>
+            <field name="tag_ids" eval="[(6, 0, [ref('tag_historic'), ref('tag_downtown')])]"/>
+        </record>
+
+         <!-- Property 5: Mountain Cabin - Sold -->
+         <record id="property_cabin_mountain" model="estate.property">
+            <field name="name">Cozy Mountain Retreat</field>
+            <field name="description">Escape to nature in this log cabin. Perfect for skiing in winter and hiking in summer.</field>
+            <field name="postcode">55443</field>
+            <field name="expected_price">280000.0</field>
+            <field name="bedrooms">2</field>
+            <field name="living_area">110</field>
+            <field name="facades">4</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">1000</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">sold</field>
+            <field name="property_type_id" ref="type_house"/>
+            <field name="tag_ids" eval="[(6, 0, [ref('tag_mountain'), ref('tag_cozy')])]"/>
+             <field name="selling_price">275000.0</field>
+             <field name="offer_ids" eval="[
+                (0, 0, {'price': 275000.0, 'partner_id': ref('res_partner_buyer_3'), 'status': 'accepted'})
+            ]"/>
+        </record>
+
+        <!-- Property 6: Office Space - New -->
+         <record id="property_office_cbd" model="estate.property">
+            <field name="name">Prime CBD Office Space</field>
+            <field name="description">Open-plan office space in a class-A building. Concierge service, meeting rooms, and high-speed internet included.</field>
+            <field name="postcode">99887</field>
+            <field name="expected_price">900000.0</field>
+            <field name="bedrooms">0</field>
+            <field name="living_area">300</field>
+            <field name="facades">1</field>
+            <field name="garage">True</field>
+            <field name="garden">False</field>
+             <field name="state">new</field>
+            <field name="property_type_id" ref="type_office"/>
+            <field name="tag_ids" eval="[(6, 0, [ref('tag_downtown'), ref('tag_new')])]"/>
+        </record>
+
+        <!-- Property 7: Fixer-Upper House - Offer Received -->
+        <record id="property_house_fixer" model="estate.property">
+            <field name="name">Investment Opportunity: Fixer-Upper</field>
+            <field name="description">Great potential for renovation. Large lot, solid structure, needs cosmetic updates.</field>
+            <field name="postcode">33221</field>
+            <field name="expected_price">100000.0</field>
+            <field name="bedrooms">3</field>
+            <field name="living_area">130</field>
+            <field name="facades">4</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">800</field>
+             <field name="state">offer_received</field>
+             <field name="property_type_id" ref="type_house"/>
+             <field name="tag_ids" eval="[(6, 0, [ref('tag_renovated')])]"/>
+             <field name="offer_ids" eval="[
+                (0, 0, {'price': 85000.0, 'partner_id': ref('res_partner_investor_1'), 'status': 'refused'}),
+                (0, 0, {'price': 92000.0, 'partner_id': ref('res_partner_investor_2'), 'status': 'new'})
+            ]"/>
+        </record>
+        
+        <!-- Property 8: Penthouse - New -->
+        <record id="property_penthouse" model="estate.property">
+            <field name="name">Exquisite Penthouse Suite</field>
+            <field name="description">Top of the world living. 360-degree city views, private elevator, and rooftop terrace.</field>
+            <field name="postcode">54321</field>
+            <field name="expected_price">3000000.0</field>
+            <field name="bedrooms">3</field>
+            <field name="living_area">400</field>
+            <field name="facades">4</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">150</field>
+            <field name="state">new</field>
+            <field name="property_type_id" ref="type_apartment"/>
+             <field name="tag_ids" eval="[(6, 0, [ref('tag_luxury'), ref('tag_downtown'), ref('tag_new')])]"/>
+        </record>
+    </data>
+</odoo>

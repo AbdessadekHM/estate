@@ -16,5 +16,8 @@
         "views/res_users_views.xml"
 
     ],
+    'demo': [
+        'demo/estate_demo.xml',
+    ],
 
 }
