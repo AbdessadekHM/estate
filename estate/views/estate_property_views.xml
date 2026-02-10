@@ -2,6 +2,28 @@
 <odoo>
 
 
+    <record id="estate_graph" model="ir.ui.view">
+        <field name="name">Estate Graph</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <graph>
+                <field name="tag_ids" />
+                <field name="selling_price" type="measure" string="Selling price"/>
+
+                <field name="best_price" type="measure" string="Best price"/>
+                <field name="expected_price" type="measure" string="Expected price" />
+
+
+                <field name="garden_area" invisible="1" />
+                <field name="living_area" invisible="1" />
+                <field name="bedrooms" invisible="1" />
+                <field name="facades" invisible="1" />
+            </graph>
+        </field>
+    </record>
+
+
+
     <record id="estate_kanban" model="ir.ui.view">
         <field name="name">Estate Kanban</field>
         <field name="model">estate.property</field>
@@ -272,7 +294,7 @@
     <record id="estate_action" model="ir.actions.act_window">
         <field name="name">Properties</field>
         <field name="res_model">estate.property</field>
-        <field name="view_mode">kanban,list,form,search</field>
+        <field name="view_mode">kanban,list,form,search,graph</field>
         <!-- <field name="views">
         </field> -->
         <field name="view_id" ref="estate_list" />

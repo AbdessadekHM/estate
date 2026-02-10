@@ -55,7 +55,7 @@ class Property(models.Model):
     tag_ids=fields.Many2many("estate.property.tag")
     offer_ids=fields.One2many("estate.property.offer", "property_id", string="Offers")
     total_area=fields.Integer(compute="_calculate_total_area", string="Total Area", store=True)
-    best_price=fields.Float(compute="_calculate_best_price", string="Best Price")
+    best_price=fields.Float(compute="_calculate_best_price", string="Best Price", store=True)
 
 
 
