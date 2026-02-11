@@ -4,7 +4,7 @@
         <field name="name">Tag list</field>
         <field name="model">estate.property.tag</field>
         <field name="arch" type="xml">
-            <list editable="bottom">
+            <list>
                 <field name="name"/>
             </list>
         </field>
