@@ -64,12 +64,17 @@ class Property(models.Model):
         for record in self:
             record.total_area = record.living_area + record.garden_area
     
+    @api.depends("offer_ids")
     def _calculate_best_price(self):
+
+        _logger = logging.getLogger()
 
         for record in self:
             if len(record.mapped("offer_ids")) == 0:
                 record.best_price = 0
                 continue
+
+            _logger.info("the calculated best price is %d ", max(record.mapped("offer_ids.price")))
 
             record.best_price = max(record.mapped("offer_ids.price"))
 
@@ -153,8 +158,8 @@ class Property(models.Model):
 
         for record in self:
             status = set(record.offer_ids.mapped("status"))
-            if 'accepted' not in status and record.selling_price!=0:
-                raise ValidationError("Selling price won't be updated until an offer is accepted")
+            if 'accepted' in status and record.selling_price <= 0:
+                raise ValidationError("Selling price won't be updated until an offer is accepted, it can't equal to 0")
                 
                 pass
 
