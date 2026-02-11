@@ -49,12 +49,24 @@
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
             <kanban >
+
+                <field name="state"/>
                 <templates>
                     <t t-name="card">
                         <field name="name"/>
                         <field name="property_type_id"/>
-                        <field name="selling_price"/>
                         <field name="tag_ids" widget="many2many_tags" options="{'color_field':'color'}"/>
+
+                        <div t-if="record.state.raw_value=='offer_received'">
+                            <p>Best price</p>
+                            <field name="best_price"/>
+
+                        </div>
+                        <div t-if="record.state.raw_value=='offer_accepted'">
+                            <p>Best price</p>
+                            <field name="selling_price"/>
+
+                        </div>
 
                     </t>
                 </templates>
