@@ -95,9 +95,7 @@
 
                         <group col="1" style="width:100vw">
 
-                                <!-- <field name="name"/> -->
                             <div class="oe_title" style="width:100vw" >
-                                <!-- <label for="name" string="Property"/> -->
                                 <h1>
 
                                     <field name="name" placeholder="Property Title"/>
@@ -108,7 +106,6 @@
 
 
                         </group>
-                        <!-- <separator/> -->
                         <group>
 
                             <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
@@ -118,7 +115,6 @@
 
                         <group>
                             <field name="property_type_id" options="{'no_create':true}"/>
-                            <!-- <field name="property_type_id" /> -->
 
 
                         </group>
@@ -160,11 +156,6 @@
 
                         </group>
 
-                        <group>
-                            <field name="state" invisible="0" />
-
-
-                        </group>
 
 
                     </group>
