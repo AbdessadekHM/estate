@@ -7,6 +7,7 @@ class Property(models.Model):
     _name = "estate.property"
     _description="easy peasy module"
     _order="id desc"
+    _inherit=["mail.thread"]
 
 
     # _check_price = models.Constraint(
