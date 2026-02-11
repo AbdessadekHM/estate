@@ -48,7 +48,7 @@ class Property(models.Model):
         ('sold', 'Sold'),
         ('cancelled', 'Cancelled'),
 
-    ], default='new')
+    ], default='new', tracking=True)
 
     property_type_id=fields.Many2one("estate.property.type", string="Property Type")
     salesperson=fields.Many2one("res.users", string="SalesPerson", default=lambda self: self.env.user )
@@ -167,6 +167,25 @@ class Property(models.Model):
 
 
         pass
+
+    def write(self, val_list):
+
+        print("\n\n\n\n\n")
+        print("\n\n\n\n\n")
+        print("\n\n\n\n\n")
+        print("self id ")
+        print(self.id)
+        print("\n\n\n\n\n")
+        print("\n\n\n\n\n")
+        print("\n\n\n\n\n")
+
+
+        server_action=self.env.ref("estate.estate_property_status_action").with_context(active_id=self.id)
+
+        # server_action.run()
+
+        return super().write(val_list)
+
 
 
 
