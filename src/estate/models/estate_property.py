@@ -158,7 +158,7 @@ class Property(models.Model):
 
         for record in self:
             status = set(record.offer_ids.mapped("status"))
-            if 'accepted' in status and record.selling_price <= 0:
+            if 'accepted' in status and float_is_zero(record.selling_price):
                 raise ValidationError("Selling price won't be updated until an offer is accepted, it can't equal to 0")
                 
                 pass
