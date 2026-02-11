@@ -57,7 +57,7 @@ class Offer(models.Model):
             # elif record.status=='accepted':
             #     raise UserError("Offer already accepted")
             else:
-                record.status=='accepted'
+                record.status='accepted'
                 record.property_id.selling_price=record.price
                 record.property_id.buyer=record.partner_id
         return True
@@ -71,7 +71,6 @@ class Offer(models.Model):
             # elif record.status=='refused':
             #     raise UserError("Offer already refused")
             else:
-                print("i am here")
                 record.status='refused'
         return True
 
