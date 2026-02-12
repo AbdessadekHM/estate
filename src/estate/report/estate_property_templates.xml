@@ -3,10 +3,16 @@
         <t t-foreach="docs" t-as="property">
             <!-- <t set="company" t-value="docs.company_id" /> -->
             <t t-call="web.html_container">
-                <t t-call="web.external_layout">
+
+                <!-- remember -> if you switch this to external this server action pop up  -->
+                <t t-call="web.internal_layout">
 
 
                     <div class="page">
+
+                        <div style="margin-top:'400px'">
+
+                        </div>
 
                         <!-- <h2>
                             <span t-field="company.name"/>
@@ -19,7 +25,7 @@
                                 </span>
                             </div>
                         </t> -->
-                        <div style="margin-top:400px">
+                        <div >
 
                             <h2>
                                 <span t-field="property.name"/>

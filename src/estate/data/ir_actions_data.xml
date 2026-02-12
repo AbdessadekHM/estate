@@ -19,6 +19,17 @@ else:
         </field>
     </record>
     
+    <record id="estate_property_report_server_action" model="ir.actions.server">
+        <field name="name">Estate Property Report</field>
+        <field name="model_id" ref="estate.model_estate_property" />
+        <field name="binding_model_id" ref="estate.model_estate_property" />
+        <field name="state">code</field>
+        <field name="code">
+action=env.ref("estate.estate_property_report_action").report_action(records)
+
+        </field>
+
+    </record>
 </odoo>
 
 
