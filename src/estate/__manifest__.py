@@ -8,6 +8,8 @@
         "security/ir.model.access.csv",
         "data/ir_actions_data.xml",
         "data/ir_cron_data.xml",
+        "report/estate_property_templates.xml",
+        "report/estate_property_reports.xml",
         "views/estate_property_offer_views.xml",
         "views/estate_property_views.xml",
         "views/estate_property_type_views.xml",
