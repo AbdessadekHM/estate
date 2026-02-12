@@ -30,6 +30,24 @@ action=env.ref("estate.estate_property_report_action").report_action(records)
         </field>
 
     </record>
+
+    <record id="estate_property_mail_server_action" model="ir.actions.server">
+        <field name="name">Estate Property Mail Action</field>
+        <field name="model_id" ref="estate.model_estate_property" />
+        <field name="binding_model_id" ref="estate.model_estate_property" />
+        <field name="state">code</field>
+        <field name="code">
+
+action={
+    'type': 'ir.actions.act_window',
+    'res_model': 'mail.compose.message',
+    'view_mode': 'form',
+    'target':'new'
+}            
+
+
+        </field>
+    </record>
 </odoo>
 
 

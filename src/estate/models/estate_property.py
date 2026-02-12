@@ -7,7 +7,7 @@ class Property(models.Model):
     _name = "estate.property"
     _description="easy peasy module"
     _order="id desc"
-    _inherit=["mail.thread"]
+    _inherit=["mail.thread","mail.activity.mixin"]
 
 
     # _check_price = models.Constraint(
@@ -58,6 +58,24 @@ class Property(models.Model):
     total_area=fields.Integer(compute="_calculate_total_area", string="Total Area", store=True)
     best_price=fields.Float(compute="_calculate_best_price", string="Best Price", store=True)
     offers_count=fields.Integer(compute="_compute_offer_len")
+
+
+    def write(self, vals):
+        if 'state' in vals.keys():
+
+            for record in self:
+
+                record.activity_schedule(
+                    'mail.mail_activity_data_todo',      
+                    summary='Contact Customer',
+                    note='Discuss the new proposal.',
+                    user_id=self.env.user.id,            
+                    date_deadline=fields.Date.today()
+                )
+
+                record.message_post(body="hello friendo",message_type="notification")
+
+        return super().write(vals)
 
 
 
