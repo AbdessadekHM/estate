@@ -57,6 +57,7 @@ class Property(models.Model):
     offer_ids=fields.One2many("estate.property.offer", "property_id", string="Offers")
     total_area=fields.Integer(compute="_calculate_total_area", string="Total Area", store=True)
     best_price=fields.Float(compute="_calculate_best_price", string="Best Price", store=True)
+    offers_count=fields.Integer(compute="_compute_offer_len")
 
 
 
@@ -159,7 +160,8 @@ class Property(models.Model):
 
         for record in self:
             status = set(record.offer_ids.mapped("status"))
-            if 'accepted' in status and float_is_zero(record.selling_price):
+            price_precision = self.env['decimal.precision'].precision_get('Product Price')
+            if 'accepted' in status and float_is_zero(record.selling_price, precision_digits=price_precision):
                 raise ValidationError("Selling price won't be updated until an offer is accepted, it can't equal to 0")
                 
                 pass
@@ -168,24 +170,32 @@ class Property(models.Model):
 
         pass
 
-    def write(self, val_list):
+    @api.depends("offer_ids")
+    def _compute_offer_len(self):
+        for record in self:
+            print("\n\n")
+            print("from computing method")
+            print(record.offer_ids)
+            print("\n\n")
+            record.offers_count=len(record.offer_ids)
 
-        print("\n\n\n\n\n")
-        print("\n\n\n\n\n")
-        print("\n\n\n\n\n")
-        print("self id ")
-        print(self.id)
-        print("\n\n\n\n\n")
-        print("\n\n\n\n\n")
-        print("\n\n\n\n\n")
+    def redirect_offers(self):
+
+        
 
 
-        server_action=self.env.ref("estate.estate_property_status_action").with_context(active_id=self.id)
+        return {
+            "name": "offers",
+            "type": "ir.actions.act_window",
+            "res_model": "estate.property.offer",
+            "view_mode":"list,form",
+            "domain": [('property_id','=',self.id),('price','>',5000)],
+            "context": {'default_price':5001, 'change_color':0} 
 
-        # server_action.run()
 
-        return super().write(val_list)
 
+        } 
+        pass
 
 
 

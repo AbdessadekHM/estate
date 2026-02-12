@@ -83,14 +83,23 @@
         <field name="arch" type="xml" >
 
             <form string="Properties">
+
                 <header>
                     <button name="sold_action" type="object" string="Sold" class="oe_highlight" invisible="state=='sold' or state=='cancelled'"/>
                     <button name="cancel_action" type="object" string="Cancel" class="button_box" invisible="state=='sold' or state=='cancelled'"/>
-                    <button name="%(estate_property_status_action)d" type="action" string="Update State" class="button_box" />
+                    <!-- <button name="%(estate_property_status_action)d" type="action" string="Update State" class="button_box" /> -->
 
                     <field name="state" widget="statusbar" statusbar_visible="new,offer_received,offer_accepted,sold" options="{'clickable':1}"/>
                 </header>
                 <sheet>
+
+                <div class="oe_button_box" name="button_box">
+                    <button icon="oi-subtitle" class="oe_stat_button" title="offers" type="object" name="redirect_offers">
+                        <field name="offers_count" widget="statinfo"/>
+
+                    </button>
+
+                </div>
                     <group>
 
                         <group col="1" style="width:100vw">
