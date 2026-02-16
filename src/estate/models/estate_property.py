@@ -22,6 +22,7 @@ class Property(models.Model):
     
 
 
+
     name=fields.Char(required=True)
     description=fields.Text()
     postcode=fields.Char()
@@ -73,7 +74,7 @@ class Property(models.Model):
                     date_deadline=fields.Date.today()
                 )
 
-                record.message_post(body="hello friendo",message_type="notification")
+                # record.message_post(body="hello friendo",message_type="notification")
 
         return super().write(vals)
 
@@ -208,7 +209,7 @@ class Property(models.Model):
             "res_model": "estate.property.offer",
             "view_mode":"list,form",
             "domain": [('property_id','=',self.id),('price','>',5000)],
-            "context": {'default_price':5001, 'change_color':0} 
+            "context": {'default_price':5001, 'change_color':1} 
 
 
 
