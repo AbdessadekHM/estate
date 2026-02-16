@@ -3,21 +3,17 @@
         <record id="estate_property_mail_template_basic" model="mail.template">
             <field name="name">Estate Property Template</field>
             <field name="model_id" ref="estate.model_estate_property"/>
-            <field name="subject">Subject</field>
+            <field name="subject">Property {{ object.name }} </field>
             <field name="email_from"></field>
             <field name="email_to">abdessadekhm@gmail.com</field>
             <field name="body_html" type="html">
 <div>
-    Dear ,<br/>
+    Hello ,<br/>
     Thank you for your inquiry.<br/>
-    Here is your badge for the event .<br/>
+    Here is your badge for the property  <t t-out="object.name" />.<br/>
     If you have any questions, please let us know.
     <br/><br/>
     Thank you, 
-    % if object.event_id.user_id.signature:
-        <br />
-        ${object.event_id.user_id.signature | safe}
-    % endif 
 </div>
             </field>
              <field name="auto_delete" eval="True"/>  
